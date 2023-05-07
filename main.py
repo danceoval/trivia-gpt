@@ -1,5 +1,7 @@
 import openai
-openai.api_key  = 'XXXXX'
+key = open('./key.txt', 'r')
+
+openai.api_key  = key.readline()
 
 def get_completion(prompt, model="gpt-3.5-turbo"):
     messages = [{"role": "user", "content": prompt}]
