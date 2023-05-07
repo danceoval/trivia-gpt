@@ -13,10 +13,10 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
     return response.choices[0].message["content"]
 
 theme = """
-Countries that no longer exist
+20th Century Literature
 """
 
-number = 5
+number = 4
 
 gen_prompt = f"""
 Generate {number} challenging trivia questions based on the theme, delimited by triple backticks.
@@ -46,5 +46,21 @@ Answer: "Incitatus"
 
 """
 
-response = get_completion(gen_prompt)
+connect_four_prompt = f"""
+Generate {number} challenging trivia questions delimited by triple backticks.
+
+The question should follow a "connect four" format. 
+A "connect four" question includes four comma-separated examples, and the answer is what they share in common.
+
+Here is an examples of a "connect four" question:
+
+Question: "Paris, Nice, Versaille, Bordeaux"
+Answer: Cities in Paris
+
+Question: "Butter, Horse, Shoe, Crane"
+Answer: Types of fly
+
+"""
+
+response = get_completion(connect_four_prompt)
 print(response)
