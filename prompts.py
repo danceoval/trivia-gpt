@@ -37,11 +37,13 @@ def connect_four_prompt(num):
 
         Here is an examples of a "connect four" question:
 
-        Question: "Paris, Nice, Versaille, Bordeaux"
-        Answer: Cities in Paris
+        question: "Paris, Nice, Versaille, Bordeaux"
+        answer: Cities in Paris
 
-        Question: "Butter, Horse, Shoe, Crane"
-        Answer: Types of fly
+        question: "Butter, Horse, Shoe, Crane"
+        answer: Types of fly
+
+        Your repsonse should be JSON object with "question" and "answer" keys.
 
         """
     return prompt

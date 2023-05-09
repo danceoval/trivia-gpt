@@ -1,4 +1,6 @@
 import openai
+import json
+
 from prompts import gen_prompt, connect_four_prompt, image_prompt
 
 key = open('./key.txt', 'r')
@@ -22,6 +24,14 @@ def get_image(prompt):
     )
     return response["data"][0]["url"]
 
+def connect_four(q_count):
+    prompt = connect_four_prompt(q_count)
+    response_json = get_completion(prompt)
+    response = json.loads(response_json)
+    img_topics = response['question'].split(", ")
+    answer = response['answer']
+    print(img_topics, " : ", answer)
+
 def main(q_count):
     print("*** RUNNING ***")
     input_str = input('Enter your topics for each trivia round, separated by topic:')
@@ -30,6 +40,9 @@ def main(q_count):
         prompt = gen_prompt(topic, q_count)
         response = get_completion(prompt)
         print(response)
+
+    connect_four(q_count)
+
     print("** DONE **")
 
-main(3)
+main(1)
