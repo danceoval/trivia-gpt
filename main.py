@@ -26,8 +26,9 @@ theme = """
 
 number = 4
 
-gen_prompt = f"""
-Generate {number} challenging trivia questions based on the theme, delimited by triple backticks.
+def gen_prompt(theme, num):
+    return(f"""
+Generate {num} challenging trivia questions based on the theme, delimited by triple backticks.
 
 ```{theme}```
 
@@ -52,7 +53,7 @@ Question: "What was the name of the horse the Roman Emperor Caligula appointed t
 Answer: "Incitatus"
 
 
-"""
+""")
 
 connect_four_prompt = f"""
 Generate {number} challenging trivia questions.
@@ -70,15 +71,23 @@ Answer: Types of fly
 
 """
 
-img_theme = "Corgis Playing"
 
-image_prompt = f"""
+def image_prompt(theme):
+    return (f"""
 Generate an image based on the theme delimited by triple backticks.
 
-```{img_theme}```
+```{theme}```
 
-"""
+""")
 
-#response = get_completion(connect_four_prompt)
-img = get_image(image_prompt)
-print(img)
+def main():
+    print("*** RUNNING ***")
+    input_str = input('Enter your topics for each trivia round, separated by topic:')
+    topics = input_str.split(", ")
+    for topic in topics:
+        prompt = gen_prompt(topic, 1)
+        response = get_completion(prompt)
+        print(response)
+    print("** DONE **")
+
+main()
